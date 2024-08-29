@@ -1,0 +1,81 @@
+<section id="billboard" class="m-5">
+    <div class="row">
+        <div class="col-md-11 mb-3">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                (input)="searchItems($event)" aria-describedby="basic-addon1">
+        </div>
+        <div class="col-md-1 mb-3">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"  
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Sort
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">  
+                    <li><a class="dropdown-item" href="javascript:;" (click)="sortItems()">A-Z</a></li>
+                    <li><a class="dropdown-item" href="javascript:;" (click)="sortItems(true)">Z-A</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="bg-light-blue h-100">
+                <div class=" text-center">
+                    <h4>Category</h4>
+                </div>
+                <div class="ms-2 mt-5">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="chkEVoucher">E-Voucher </label>
+                        <input type="checkbox" class="form-check-input form-check-input-lg" id="chkEVoucher">
+                    </div>
+                </div>
+                <hr/>
+                <div class="ms-2">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="chkProducts">Products </label>
+                        <input type="checkbox" class="form-check-input" id="chkProducts">
+                    </div>
+                </div>
+                <hr/>
+                <div class="ms-2">  
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="chkFashion">Fashion &n Retail </label>
+                        <input type="checkbox" class="form-check-input" id="chkFashion">
+                    </div>
+                </div>
+                <hr/>
+                <div class="ms-2">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="chkEvergreen">Evergreen </label>
+                        <input type="checkbox" class="form-check-input" id="chkEvergreen">
+                    </div>
+                </div>
+                <hr/>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row bg-light-blue">
+                <div class="col-md-4 mb-4" *ngFor="let item of filterItems">
+                    <div class="card">
+                        <img *ngIf="item.display_img_url != null" src="{{item.display_img_url}}" class="card-img-top"
+                            alt="Item Image" height="250">
+                        <img *ngIf="item.display_img_url == null" src="assets/images/noimage.png" class="card-img-top"
+                            alt="Item Image" height="250">
+                        <div class="card-body">
+                            <h5 class="card-title"> {{item.name}}</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p>Points: <span class="price">{{item.points}}</span></p>
+                                <span class="badge bg-primary rounded-pill fs-6"
+                                    *ngIf="item.quantity != null && item.quality <= item.low_quantity">On High
+                                    Demand</span>
+                                <span class="badge bg-danger rounded-pill fs-6" *ngIf="item.quantity == 0">Out of
+                                    Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
